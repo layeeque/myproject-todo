@@ -1,0 +1,76 @@
+<div class="container" style="width:40%;overflow: auto;max-height: 98%;" id="add">
+  <button class="btn btn-primary btn-xs" data-title="add" [routerLink]="['/dashboard']">
+    Back to dashboard </button>&nbsp;&nbsp; <button class="btn btn-primary btn-xs pull-right" data-title="add" (click)="clearAll()">
+     Clear All </button>
+  <div>
+    <div>
+      <h4 style="text-align: center">Edit Your Details</h4>
+    </div>
+    <form name="form"   (ngSubmit)="f.form.valid && editfunction()" #f="ngForm" novalidate>
+      <div>
+        <div class="form-group">
+          Task Name :
+          <input class="form-control " type="text" [(ngModel)]="model.newfname" #newfname="ngModel" [class.is-invalid]="f.submitted && newfname.invalid"
+            name="newfname" required>
+          <div *ngIf="f.submitted || newfname.invalid" class="invalid-feedback">
+            Task Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          Assignee
+          <input class="form-control " type="text" [(ngModel)]="model.newlname" #newlname="ngModel" [class.is-invalid]="f.submitted && newlname.invalid "
+            name="newlname" required newlname>
+          <div *ngIf="f.submitted || newlname.invalid" class="invalid-feedback">
+            Assignee Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          Assign - Date :
+          <div class="form-control " style="padding-bottom: 10%">
+            <mat-form-field>
+              <input matInput [matDatepicker]="myDatepicker" [(ngModel)]="model.newaddress" #myDatepicker="ngModel" name="newaddress" [max]="model.newstate" readonly="readonly" required>
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker></mat-datepicker>
+              <mat-error *ngIf="f.submitted || myDatepicker.invalid" class="invalid-feedback">
+                Assignee Date is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+        </div>
+
+        <div class="form-group">
+          Completion - Date :
+          <div class="form-control " style="padding-bottom: 10%">
+            <mat-form-field>
+              <input matInput [matDatepicker]="myDatepicker1" [(ngModel)]="model.newstate" #myDatepicker1="ngModel" name="newstate" [min]="model.newaddress" readonly="readonly" required>
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker1></mat-datepicker>
+              <mat-error *ngIf="f.submitted || myDatepicker1.invalid" class="invalid-feedback">
+                Completion Date is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+         
+        </div>
+
+        <div class="form-group">
+          Task Details :
+          <input class="form-control " type="text" [(ngModel)]="model.newmobile" #newmobile="ngModel" [class.is-invalid]="f.submitted && newmobile.invalid "
+            name="newmobile" required newmobile>
+          <div *ngIf="f.submitted || newmobile.invalid" class="invalid-feedback">
+              Task Details is required
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;">
+          <span>Click to Update the Task</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
